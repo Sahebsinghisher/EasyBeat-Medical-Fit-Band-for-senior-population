@@ -18,11 +18,11 @@ Technologies Used:
 HTML, CSS, JavaScript (for the web interface)
 Firebase Realtime Database (for data storage and retrieval)
 ESP8266 Wi-Fi module (for the wearable device)
-Twilio (optional, for SMS alerts)
+Twilio
 
 Getting Started:
 Clone this repository: 
-$git clone 
+$git clone https://github.com/Sahebsinghisher/EasyBeat-Medical-Fit-Band-for-senior-population.git
 Install required dependencies (if any).
 Configure the Firebase project with your own credentials.
 (Optional) Develop the companion mobile app using your preferred mobile development framework.
