@@ -1,0 +1,273 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Rate Monitor - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('C:/Users/Saheb%20singh%20isher/Downloads/20240501_134622 (2).jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            height: 100vh;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease-in-out;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .overlay {
+            padding: 50px 0;
+            width: calc(100% - 250px);
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        li strong {
+            font-weight: bold;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin-left: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            width: 45%;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .feature-list li p {
+            margin-bottom: 10px;
+        }
+
+        .feature-list li img {
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 18px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        .contact-number {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Pop-up button */
+        .popup-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Pop-up button -->
+    <div class="popup-btn" onclick="toggleSidebar()">Menu</div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#parts">Parts</a>
+        <a href="#test-heartbeat">Test Your Heartbeat</a>
+        <a href="#for-doctors">For Doctors</a>
+        <a href="#for-patients">For Patients</a>
+        <a href="#for-nurses">For Nurses</a>
+    </div>
+
+    <div class="overlay">
+        <div class="container">
+            <h1>Welcome to Heart Rate Monitor</h1>
+
+            <!-- Elaboration of the heart rate monitor's flow -->
+            <div id="how-it-works" class="section">
+                <h2>How It Works</h2>
+                <p>The Heart Rate Monitor is designed to help you easily track and monitor your heart health. Here's how it works:</p>
+                <ul>
+                    <li><strong>Pulse Sensor:</strong> The integrated pulse sensor ensures accurate heart rate monitoring by measuring the pulse rate from your fingertips.</li>
+                    <li><strong>Website Interface:</strong> The user-friendly website interface provides real-time heart rate readings, accessible from any device with internet connectivity.</li>
+                    <li><strong>Database Connectivity:</strong> Secure database connectivity allows multiple users to access and monitor heart rate data simultaneously, ensuring efficient and convenient tracking.</li>
+                    <li><strong>Companion Mobile App:</strong> The companion mobile app, specifically designed for elderly users, provides easy access to heart rate readings on-the-go, ensuring continuous monitoring and timely intervention when needed.</li>
+                </ul>
+            </div>
+
+            <div id="parts" class="section">
+                <h2>Parts</h2>
+                <ul class="feature-list">
+                    <li>
+                        <p><strong>Pulse Sensor</strong></p>
+                        <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\pulse.jpg" alt="Pulse Sensor">
+                    </li>
+                    <li>
+                        <p><strong>ESP8266 Wi-Fi Module</strong></p>
+                        <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\ESP8266 Wifi.jpg" alt="ESP8266 Wi-Fi Module">
+                    </li>
+                    <li>
+                        <p><strong>Database Connectivity</strong></p>
+                        <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\database connectivity.avif" alt="Database Connectivity">
+                    </li>
+                    <li>
+                        <p><strong>Companion Mobile App</strong></p>
+                        <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\Companion_Mobile_vert_medium.png" alt="Companion Mobile App">
+                    </li>
+                </ul>
+            </div>
+
+            <div id="test-heartbeat" class="section">
+                <h2>Ready to Test Your Heartbeat?</h2>
+                <a href="C:\Users\Saheb singh isher\Amazon\medical web-app.html">Test Your Heartbeat</a>
+                <p>For help and support, please contact us at <span class="contact-number">+91 02020 11111</span>.</p>
+            </div>
+
+            <!-- Additional sections -->
+            <div id="for-doctors" class="section">
+                <h2>For Doctors:</h2>
+                <ul>
+                    <li><strong>Real-Time Heart Rate Monitoring:</strong> Doctors can monitor patients' heart rates in real-time, allowing for immediate intervention if necessary.</li>
+                    <li><strong>Data Analysis Tools:</strong> Access to comprehensive heart rate data enables doctors to analyze trends, identify patterns, and make informed decisions about patient care.</li>
+                    <li><strong>Customizable Alerts:</strong> Doctors can set custom alerts to receive notifications when patients' heart rates fall outside normal ranges, facilitating timely intervention.</li>
+                    <li><strong>Secure Access:</strong> The system ensures that only authorized medical personnel can access patient data, maintaining patient confidentiality and complying with privacy regulations.</li>
+                </ul>
+                <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\Doctor.jpg" alt="Doctor Image">
+            </div>
+
+            <div id="for-patients" class="section">
+                <h2>For Patients:</h2>
+                <ul>
+                    <li><strong>User-Friendly Interface:</strong> Patients can easily monitor their own heart rates using a simple and intuitive mobile app interface.</li>
+                    <li><strong>Visualized Data:</strong> Clear visualization of heart rate data helps patients understand their heart health status and track changes over time.</li>
+                    <li><strong>Alert Notifications:</strong> Patients receive notifications on their mobile devices if their heart rate exceeds or falls below safe levels, prompting them to take appropriate actions.</li>
+                    <li><strong>Data Privacy:</strong> Patients can trust that their heart rate data is securely stored and accessible only to authorized medical professionals, ensuring their privacy is protected.</li>
+                </ul>
+            </div>
+
+            <div id="for-nurses" class="section">
+                <h2>For Nurses:</h2>
+                <ul>
+                    <li><strong>Remote Monitoring:</strong> Nurses can remotely monitor multiple patients' heart rates simultaneously, allowing them to prioritize care based on urgency.</li>
+                    <li><strong>Efficient Workflow:</strong> Integration with patient management systems streamlines workflow, enabling nurses to access heart rate data alongside other patient information.</li>
+                    <li><strong>Customizable Settings:</strong> Nurses can customize alert thresholds and notification preferences to align with individual patient needs and care plans.</li>
+                    <li><strong>Collaborative Care:</strong> Nurses can easily share heart rate data with doctors and other healthcare providers, facilitating collaborative decision-making and coordinated patient care.</li>
+                </ul>
+                <img src="C:\Users\Saheb singh isher\Desktop\Experiences\Medical fitband website\Nurse.avif" alt="Nurse Image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

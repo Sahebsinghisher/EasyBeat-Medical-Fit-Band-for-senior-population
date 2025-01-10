@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heart Rate Readings</title>
+    <style type="text/css">
+        body{
+            background-color: #F5F5F5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .data-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #FFF;
+            box-shadow: 0 2px 20px rgba(0, 0, 0,0.1);
+            border-radius: 10px;
+        }
+
+        .data-item{
+            text-align: center;
+        }
+
+        .data-item h2{
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .data-item p{
+            font-size: 48px;
+            font-weight: bold;
+            color: #6EB7FF;
+        }
+
+        .data-head{
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            font-size: 45px;
+            font-weight: bold;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #FFF;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+        }
+        .button-container{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button{
+            padding: 10px 20px;
+            background-color: #6EB7FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="data-head">Heart Rate Sensor Realtime Readings</div>
+
+<div class="data-container">
+    <div class="data-item">
+        <h2>Heart Rate</h2>
+        <p class="value" id="heart-rate">--</p>
+    </div>
+</div>
+
+<div class="button-container">
+    <button class="button" onclick="sendSOS()">Send SOS</button>
+</div>
+
+<!-- Initialize Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+
+<script type="text/javascript">
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB0VR65k07QoE0c47TgZS8b3M79UDsWRr8",
+        authDomain: "esp8266bruh.firebaseapp.com",
+        databaseURL: "https://esp8266bruh-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "esp8266bruh",
+        storageBucket: "esp8266bruh.appspot.com",
+        messagingSenderId: "424506577502",
+        appId: "1:424506577502:web:c449e46409f25537df5acf",
+        measurementId: "G-SPZ74TTXNZ"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    // Reference to heart rate data in Firebase Realtime Database
+    const heartRateRef = firebase.database().ref('Sensor/Reading3');
+
+    // Fetch the heart rate data and update the UI
+    heartRateRef.on('value', function(snapshot) {
+        const heartRate = snapshot.val();
+        const heartRateElement = document.getElementById('heart-rate');
+        heartRateElement.textContent = heartRate ? ${heartRate} bpm : '--';
+
+        // Send SMS using Twilio if heart rate goes above 175 or below 45
+        if (heartRate > 175 || heartRate < 45) {
+            sendSMS(Heart rate is ${heartRate} bpm. Please check.);
+        }
+    });
+
+    // Function to send SOS SMS using Twilio
+    function sendSMS(message) {
+        // Implement Twilio SMS sending logic here
+        // This function will be invoked when an SOS condition is detected
+        console.log('Sending SOS:', message);
+    }
+
+    // Function to manually send SOS message when the button is clicked
+    function sendSOS() {
+        const message = "SOS! Urgent help needed!";
+        sendSMS(message);
+    }
+</script>
+
+</body>
+</html>
